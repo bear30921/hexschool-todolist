@@ -13,6 +13,10 @@ const server = http.createServer((req, res) => {
 		'Content-Type': 'application/json',
 	};
 	console.log(req.url);
+	let body = '';
+	req.on('data', (chunk) => {
+		body += chunk;
+	});
 	
 	if (req.url === '/todos' && req.method === 'GET') {
 		res.writeHead(200, headers);
@@ -100,4 +104,4 @@ const server = http.createServer((req, res) => {
 	}
 });
 
-server.listen(process.env.PORT || 3005);
+server.listen(3005);
